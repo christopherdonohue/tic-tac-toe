@@ -109,11 +109,44 @@ body {
   background-color: rgb(73, 228, 73);
 }
 
+.winner-text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -200%);
+  font-size: 5vmin;
+}
+
 .backward {
   rotate: 45deg;
-  transform: translate(-10.2%, 1120%);
+  transform: translate(-10.2%, 1125%);
+}
+
+.forward {
+  transform: translate(9.8%, 1205%);
 }
 
 .hidden {
   display: none;
+}
+
+@media (min-width: 1000px) {
+  .board {
+    width: 917.233px;
+  }
+
+  .first-row,
+  .second-row,
+  .third-row {
+    font-size: 219.333px;
+  }
+
+  .winner-line,
+  .winner {
+    height: 11.2333px;
+  }
+
+  .winner-text {
+    font-size: 49.85px;
+  }
 }

@@ -2,6 +2,8 @@ const cells = [...document.querySelectorAll('.cell')];
 const darkMode = document.querySelector('.dark-mode');
 const board = document.querySelector('.board');
 const winnerLines = [...document.querySelectorAll('.winner-line')];
+const winnerText = document.querySelector('.winner-text');
+let endGame = false;
 const players = [
   {
     value: 'X',
@@ -18,6 +20,7 @@ darkMode.addEventListener('click', () => {
   cells.forEach((cell) => {
     cell.classList.toggle('dark-theme-board');
     cell.children[0].classList.toggle('dark-theme-font');
+    winnerText.classList.toggle('dark-theme-font');
   });
 });
 
@@ -44,7 +47,6 @@ const checkForWin = () => {
               results.direction = 'diagonal-backward';
               break;
             case 1:
-              console.log('ass');
               results.direction = 'diagonal-forward';
               break;
           }
@@ -71,7 +73,6 @@ const checkForWin = () => {
     div1.classList.add('winner');
     div2.classList.add('winner');
     div3.classList.add('winner');
-    console.log(results);
     switch (results.direction) {
       case 'vertical':
         div1.classList.add('vertical');
@@ -79,7 +80,6 @@ const checkForWin = () => {
         div3.classList.add('vertical');
         break;
       case 'diagonal-forward':
-        console.log(winnerLines);
         winnerLines[0].classList.remove('hidden');
         break;
       case 'diagonal-backward':
@@ -91,6 +91,9 @@ const checkForWin = () => {
       results.domElements[1].appendChild(div2);
       results.domElements[2].appendChild(div3);
     }
+    winnerText.children[0].innerText = `Winner is Player ${results.winningPlayer}`;
+    endGame = true;
+    startOrEndGame();
   };
 
   cells.forEach((cell) => {
@@ -141,19 +144,27 @@ const checkForWin = () => {
   }
 };
 
-cells.forEach((cell) => {
-  cell.addEventListener('click', () => {
-    if (cell.children[0].classList.contains('unused')) {
-      players.forEach((player) => {
-        if (player.turn) {
-          cell.children[0].innerText = player.value;
-          player.turn = false;
-        } else {
-          player.turn = true;
+function startOrEndGame() {
+  cells.forEach((cell) => {
+    if (!endGame) {
+      cell.addEventListener('click', () => {
+        if (cell.children[0].classList.contains('unused')) {
+          players.forEach((player) => {
+            if (player.turn) {
+              cell.children[0].innerText = player.value;
+              player.turn = false;
+            } else {
+              player.turn = true;
+            }
+          });
+          cell.children[0].classList.remove('unused');
         }
+        checkForWin();
       });
-      cell.children[0].classList.remove('unused');
+    } else {
+      cell.style.pointerEvents = 'none';
     }
-    checkForWin();
   });
-});
+}
+
+startOrEndGame();
