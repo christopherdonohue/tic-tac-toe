@@ -40,7 +40,6 @@ const checkForWin = () => {
         row.every((el) => el.value === players[0].value) ||
         row.every((el) => el.value === players[1].value)
       ) {
-        console.log(row);
         if (isDiagonal) {
           switch (index) {
             case 0:
