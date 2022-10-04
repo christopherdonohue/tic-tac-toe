@@ -1,8 +1,9 @@
 const cells = [...document.querySelectorAll('.cell')];
-const darkMode = document.querySelector('.dark-mode');
+const theme = document.querySelector('.theme-button');
 const board = document.querySelector('.board');
 const winnerLines = [...document.querySelectorAll('.winner-line')];
 const winnerText = document.querySelector('.winner-text');
+const slider = document.querySelector('.slider');
 let endGame = false;
 const players = [
   {
@@ -15,11 +16,15 @@ const players = [
   },
 ];
 
-darkMode.addEventListener('click', () => {
+theme.addEventListener('click', () => {
   document.body.classList.toggle('dark-theme-body');
   cells.forEach((cell) => {
     cell.classList.toggle('dark-theme-board');
+    cell.children[0].classList.toggle('light-theme-font');
     cell.children[0].classList.toggle('dark-theme-font');
+    slider.classList.toggle('dark-slider');
+    slider.classList.toggle('light-slider');
+
     winnerText.classList.toggle('dark-theme-font');
   });
 });

@@ -10,15 +10,55 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
+  background: linear-gradient(
+    to left top,
+    rgb(225, 210, 118),
+    rgb(236, 98, 98)
+  );
+
+  transition: all 0.25s;
 }
 
 .dark-theme-body {
-  background-color: rgb(16, 16, 16);
+  background: rgb(16, 16, 16);
 }
 
 .color-toggle {
   position: absolute;
   top: 1rem;
+}
+
+.theme-button {
+  background-color: rgba(81, 81, 81, 0.731);
+  border: none;
+  border-radius: 25px;
+  padding: 0.15rem 0.5rem;
+  /* border: 1px solid rgba(81, 81, 81, 0.731); */
+  position: relative;
+}
+
+.theme-icon {
+  width: 6.5vmin;
+}
+
+.slider {
+  position: absolute;
+  height: 100%;
+  background-color: rgb(85, 85, 85);
+  width: 50%;
+  border-radius: 25px;
+  top: 0;
+  transition: left 0.5s, right 0.5s ease-out;
+}
+
+.dark-slider {
+  left: 0px;
+  right: 50%;
+}
+
+.light-slider {
+  right: 0px;
+  left: 50%;
 }
 
 .board {
@@ -42,22 +82,29 @@ body {
   outline: none;
   border-top: none;
   border-left: none;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
+  border-right: 3px solid rgb(228, 168, 249);
+  border-bottom: 3px solid rgb(228, 168, 249);
   font-family: arial;
   display: grid;
   justify-content: center;
   align-items: center;
+  transition: border 0.25s;
 }
 
 .dark-theme-board {
-  border-color: rgb(133, 236, 95);
+  border-color: rgb(38, 34, 255);
   filter: saturate(1.5);
 }
 
+.light-theme-font {
+  color: rgb(131, 214, 183);
+  filter: drop-shadow(0px 0px 4px rgb(131, 214, 183));
+  transition: color 0.25s;
+}
+
 .dark-theme-font {
-  color: rgb(213, 106, 251);
-  filter: drop-shadow(0px 0px 4px rgb(213, 106, 251));
+  color: rgb(213, 106, 251) !important;
+  filter: drop-shadow(0px 0px 4px rgb(213, 106, 251)) !important;
 }
 
 .third-row {
@@ -73,13 +120,15 @@ body {
 }
 
 .winner {
-  background-color: rgb(73, 228, 73);
+  background-color: rgb(153, 234, 134);
+  filter: drop-shadow(0px 0px 3px rgb(153, 234, 134));
   width: 103%;
   height: 1.225vmin;
   position: absolute;
   top: 50%;
   transform: translateY(-100%);
   z-index: 999;
+  transition: background-color 0.25s;
 }
 
 .vertical {
@@ -106,7 +155,9 @@ body {
   transform: translate(10%, 1200%);
   rotate: 135deg;
   position: absolute;
-  background-color: rgb(73, 228, 73);
+  background-color: rgb(153, 234, 134);
+  filter: drop-shadow(0px 0px 3px rgb(153, 234, 134));
+  transition: background-color 0.25s;
 }
 
 .winner-text {
@@ -115,6 +166,9 @@ body {
   left: 50%;
   transform: translate(-50%, -200%);
   font-size: 5vmin;
+  color: rgb(131, 214, 183);
+  filter: drop-shadow(0px 0px 2px rgb(131, 214, 183));
+  transition: color 0.25s;
 }
 
 .backward {
